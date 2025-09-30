@@ -4,21 +4,6 @@ from backend.data_processing import query_job_listings
 from frontend.pie_chart import must_have_skills
 from frontend.bar_chart import num_of_vacancies
 from frontend.map import choroplth_map
-
-
-
-# def count_vacancies(data, type = None):
-
-#         if type == 'ej specificerad':
-#             return data[data["WORKPLACE_REGION"] == 'ej specificerad']["NUMBER_OF_VACANCIES"].sum()
-#         else:
-#             return data["NUMBER_OF_VACANCIES"].sum()
-    
-# def count_procent(data):
-    
-#     total = count_vacancies(data= data)
-#     part = count_vacancies(data= data, type= "ej specificerad")
-#     return f"{round((part / total) * 100,2)}%" 
     
 
 def layout():
@@ -56,7 +41,7 @@ def layout():
 
     #skill graph
 
-    fig_pie, excluded_pct = must_have_skills(df, "MUST_HAVE_SKILLS")
+    fig_pie, excluded_pct = must_have_skills(df, "must_have_skills")
     st.plotly_chart(fig_pie)   
 
     st.markdown(

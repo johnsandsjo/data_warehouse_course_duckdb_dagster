@@ -42,7 +42,7 @@ def layout():
     st.plotly_chart(fig, use_container_width= True)
 
     #skill graph
-    fig_pie, excluded_pct = must_have_skills(df, "MUST_HAVE_EDU_LEVEL")
+    fig_pie, excluded_pct = must_have_skills(df, "must_have_edu_level")
     st.plotly_chart(fig_pie)
 
     st.markdown(

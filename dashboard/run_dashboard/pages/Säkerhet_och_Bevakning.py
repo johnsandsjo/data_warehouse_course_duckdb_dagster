@@ -43,7 +43,7 @@ def layout():
     st.plotly_chart(fig)
 
     #skill graph
-    fig_pie, excluded_pct = must_have_skills(df, "MUST_HAVE_WORK_EXP")
+    fig_pie, excluded_pct = must_have_skills(df, "must_have_work_exp")
     st.plotly_chart(fig_pie)
 
     st.markdown(

@@ -1,12 +1,15 @@
 sources:
   - name: job_ads
-    database: job_db
+    database: job_advertisments
     schema: staging
     tables:
       - name: stg_snapshot_job_ads
         identifier: arbetsformedling_ads
       - name: stg_stream_job_ads
         identifier: daily_arbetsformedling_ads
+        meta:
+          dagster: 
+            asset_key: ["dlt_job_ads_source_jobsearch_resource"]
       - name: stg_job_ads_must_have_skills
         identifier: arbetsformedling_ads__must_have__skills
       - name: stg_job_ads_must_have_work_exp
@@ -15,7 +18,16 @@ sources:
         identifier: arbetsformedling_ads__must_have__education_level
       - name: stg_job_ads_must_have_skills_stream
         identifier: daily_arbetsformedling_ads__must_have__skills
+        meta:
+          dagster: 
+            asset_key: ["stream_skills_dlt_job_ads_source_jobsearch_resource"]
       - name: stg_job_ads_must_have_work_exp_stream
         identifier: DAILY_ARBETSFORMEDLING_ADS__MUST_HAVE__WORK_EXPERIENCES
+        meta:
+          dagster: 
+            asset_key: ["stream_work_exp_dlt_job_ads_source_jobsearch_resource"]
       - name: stg_job_ads_must_have_education_level_stream
         identifier: daily_arbetsformedling_ads__must_have__education_level
+        meta:
+          dagster: 
+            asset_key: ["stream_edu_dlt_job_ads_source_jobsearch_resource"]
