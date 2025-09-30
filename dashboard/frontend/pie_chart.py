@@ -2,9 +2,9 @@ import plotly.express as px
 
 def must_have_skills(df, column):
     column_titles = {
-        "MUST_HAVE_WORK_EXP": "Arbetslivserfarenhet",
-        "MUST_HAVE_EDU_LEVEL": "Utbildningsnivå",
-        "MUST_HAVE_SKILLS": "Efterfrågade skills"
+        "must_have_work_exp": "Arbetslivserfarenhet",
+        "must_have_edu_level": "Utbildningsnivå",
+        "must_have_skills": "Efterfrågade skills"
     }
 
     total = len(df)

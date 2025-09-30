@@ -12,9 +12,9 @@ def num_of_ads(df):
 
 #Nya annonser senaste 7 dagar
 def num_of_ads_7_days(df):
-    df_new = df[['OCCUPATION', 'NUMBER_OF_VACANCIES', 'PUBLICATION_DATE']]
-    max_date = df_new['PUBLICATION_DATE'].max()
-    filtered_df = df_new[df_new['PUBLICATION_DATE'] > days_ago(max_date)]
+    df_new = df[['occupation', 'number_of_vacancies', 'publication_date']]
+    max_date = df_new['publication_date'].max()
+    filtered_df = df_new[df_new['publication_date'] > days_ago(max_date)]
 
     return filtered_df.shape[0]
 
@@ -27,7 +27,7 @@ def get_matches(occupation):
     df_occupation = region_code(geojson= read_json_data())
     
     # get all region in a list
-    regions = region_vacancies(occupation= occupation)["WORKPLACE_REGION"].values
+    regions = region_vacancies(occupation= occupation)["workplace_region"].values
     
     region_code_map = []
     for region in regions:
@@ -43,9 +43,9 @@ def count_vacancies(data, type = None):
 
 
         if type == 'ej specificerad':
-            return data[data["WORKPLACE_REGION"] == 'ej specificerad']["NUMBER_OF_VACANCIES"].sum()
+            return data[data["workplace_region"] == 'ej specificerad']["number_of_vacancies"].sum()
         else:
-            return data["NUMBER_OF_VACANCIES"].sum()
+            return data["number_of_vacancies"].sum()
         
 def count_procent(data):
     
