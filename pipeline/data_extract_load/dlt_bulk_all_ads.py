@@ -4,6 +4,9 @@ import json
 from pathlib import Path
 import os
 
+
+db_path = str(Path(__file__).parents[1] / "data_warehouse/job_advertisments.duckdb")
+
 def _get_ads(url):
     response = requests.get(url)
     response.raise_for_status()  # check for http errors
@@ -22,7 +25,7 @@ def jobsearch_resource():
 def run_pipeline(table_name):
     pipeline = dlt.pipeline(
         pipeline_name="job_ads_snapshot",
-        destination="snowflake",
+        destination=dlt.destinations.duckdb(db_path),
         dataset_name="staging",
     )
         

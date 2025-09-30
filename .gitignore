@@ -213,3 +213,11 @@ __marimo__/
 **/.dlt/
 
 HR_agency.egg-info 
+
+# duckdb
+
+*.duckdb
+
+target/
+dbt_packages/
+logs/
