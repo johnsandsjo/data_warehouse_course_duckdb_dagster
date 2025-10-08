@@ -7,8 +7,11 @@ from dagster_dbt import DbtCliResource, dbt_assets, DbtProject
 import sys
 sys.path.insert(0, "../data_extract_load")
 from dlt_daily_update import job_ads_source
+import os
 
-db_path = str(Path(__file__).parents[1] / "data_warehouse/job_advertisments.duckdb")
+#db_path = str(Path(__file__).parents[1] / "data_warehouse/job_advertisments.duckdb")
+DUCKDB_PATH = os.getenv("DUCKDB_PATH")
+DBT_PROFILES_DIR = os.getenv("DBT_PROFILES_DIR")
 
 # asset
 dlt_resource = DagsterDltResource()
@@ -17,16 +20,15 @@ dlt_resource = DagsterDltResource()
 @dlt_assets(dlt_source= job_ads_source(),dlt_pipeline= dlt.pipeline(
     pipeline_name = "job_ads_stream_daily",
     dataset_name = "staging",
-    destination = dlt.destinations.duckdb(db_path))
+    destination = dlt.destinations.duckdb(DUCKDB_PATH))
     )
 def dlt_load(context: dg.AssetExecutionContext, dlt: DagsterDltResource):
     yield from dlt.run(context= context)
     
 ## create dbt asset
 dbt_project_dir = Path(__file__).parents[1] / "data_transformation"
-profiles_path = Path.home() / ".dbt"
 
-dbt_project = DbtProject(project_dir= dbt_project_dir, profiles_dir = profiles_path)
+dbt_project = DbtProject(project_dir= dbt_project_dir, profiles_dir = Path(DBT_PROFILES_DIR))
 dbt_resource = DbtCliResource(project_dir = dbt_project)
 
 dbt_project.prepare_if_dev()

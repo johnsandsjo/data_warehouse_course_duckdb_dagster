@@ -1,0 +1,40 @@
+az container create \
+  --os-type Linux \
+  --resource-group rg-marcus-john-dev \
+  --name bulkcontainer \
+  --image crmarcusjohn.azurecr.io/hr_dashboard:latest \
+  --registry-login-server crmarcusjohn.azurecr.io \
+  --registry-username crmarcusjohn \
+  --registry-password EnbwCX7krTMnCd4ckkByQS03G7NVkyRWk7C8dVgBb5+ACRCp1B3q \
+  --ip-address Public \
+  --ports 80 3000 \
+  --environment-variables \
+      DBT_PROFILES_DIR=/mnt/data/.dbt \
+      DUCKDB_PATH=/mnt/data/job_advertisments.duckdb \
+  --azure-file-volume-share-name data \
+  --azure-file-volume-account-name stmarcusjohn \
+  --azure-file-volume-account-key pvQQZfhyMelgHV8wn1mtM99//CULaUkTTZsIhHWLp5XEevuW9/o5UlsadRiRXocc79x4elub0JtB+AStmEB9Ig== \
+  --azure-file-volume-mount-path /mnt/data \
+  --cpu 1 \
+  --memory 4
+
+
+  az container create \
+  --os-type Linux \
+  --resource-group rg-marcus-john-dev \
+  --name dailycontainer \
+  --image crmarcusjohn.azurecr.io/hr_daily_dashboard:latest \
+  --registry-login-server crmarcusjohn.azurecr.io \
+  --registry-username crmarcusjohn \
+  --registry-password EnbwCX7krTMnCd4ckkByQS03G7NVkyRWk7C8dVgBb5+ACRCp1B3q \
+  --ip-address Public \
+  --ports 80 3000 \
+  --environment-variables \
+      DBT_PROFILES_DIR=/mnt/data/.dbt \
+      DUCKDB_PATH=/mnt/data/job_advertisments.duckdb \
+  --azure-file-volume-share-name data \
+  --azure-file-volume-account-name stmarcusjohn \
+  --azure-file-volume-account-key pvQQZfhyMelgHV8wn1mtM99//CULaUkTTZsIhHWLp5XEevuW9/o5UlsadRiRXocc79x4elub0JtB+AStmEB9Ig== \
+  --azure-file-volume-mount-path /mnt/data \
+  --cpu 1 \
+  --memory 4

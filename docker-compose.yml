@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  dwh_bulk:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: dockerfile.bulk
+    ports:
+      - "3000:3000"
+    image: crmarcusjohn.azurecr.io/hr_dashboard:latest
+  dwh_pipeline:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: dockerfile.dwh
+    ports:
+      - "3000:3000"
+    image: crmarcusjohn.azurecr.io/hr_daily_dashboard:latest
+
+  dwh_dash:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: dockerfile.dash
+    ports:
+      - "8501:8501"
+    image: crmarcusjohn.azurecr.io/web_dash:latest

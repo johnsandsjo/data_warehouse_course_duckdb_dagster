@@ -1,9 +1,9 @@
 import streamlit as st
-from backend.data_processing import query_job_listings
-from backend.calculation import num_of_ads, num_of_ads_7_days, count_vacancies, count_procent
-from frontend.bar_chart import num_of_vacancies
-from frontend.pie_chart import must_have_skills
-from frontend.map import choroplth_map
+from ..backend.data_processing import query_job_listings
+from ..backend.calculation import num_of_ads, num_of_ads_7_days, count_vacancies, count_procent
+from ..frontend.bar_chart import num_of_vacancies
+from ..frontend.pie_chart import must_have_skills
+from ..frontend.map import choroplth_map
 
 
 def layout():
