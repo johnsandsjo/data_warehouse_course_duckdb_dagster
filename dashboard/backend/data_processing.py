@@ -4,12 +4,13 @@ from pathlib import Path
 import json
 import duckdb
 
-
-db_path = str(Path(__file__).parents[2] / "pipeline/data_warehouse/job_advertisments.duckdb")
+#db_path = str(Path(__file__).parents[2] / "pipeline/data_warehouse/job_advertisments.duckdb")
+DUCKDB_PATH = os.getenv("DUCKDB_PATH")
+#FILE_SHARE_PATH = Path("mnt/data/job_advertisment.duckdb")
  
 def query_job_listings(occupational_field):
 
-    with duckdb.connect(db_path, read_only = True) as conn:
+    with duckdb.connect(DUCKDB_PATH, read_only = True) as conn:
     
 
         if occupational_field == "Data/IT":

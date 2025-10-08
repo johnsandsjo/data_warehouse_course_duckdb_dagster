@@ -2,12 +2,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name= "HR-agency",
-    version= "0.0.1",
-    description="""
-    This page is used for creating dashboard in streamlit for HR-agency""",
-    author= "Marcus, Hazan, John",
-    install_requires = ["pandas", "streamlit", "duckdb", "openpyxl"],
-    packages= find_packages(exclude=("exploration*", "dbt_job_ads*", "pipeline*", "logs*", "worksheets")),
-    python_requires =">=3.7"
+    name="hr_agency",
+    version="0.1.0",
+    description="A Streamlit dashboard for HR analytics.",
+    author="Marcus, John",
+    packages=find_packages(),
+    install_requires=["streamlit", "duckdb", "pandas", "plotly"],
+    package_data={
+        "backend.geojson_data": ["*.geojson"],
+    },
 )

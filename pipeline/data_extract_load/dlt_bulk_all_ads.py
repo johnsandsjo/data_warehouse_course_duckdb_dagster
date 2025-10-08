@@ -5,7 +5,8 @@ from pathlib import Path
 import os
 
 
-db_path = str(Path(__file__).parents[1] / "data_warehouse/job_advertisments.duckdb")
+#db_path = str(Path(__file__).parents[1] / "data_warehouse/job_advertisments.duckdb")
+DUCKDB_PATH = os.getenv("DUCKDB_PATH")
 
 def _get_ads(url):
     response = requests.get(url)
@@ -25,7 +26,7 @@ def jobsearch_resource():
 def run_pipeline(table_name):
     pipeline = dlt.pipeline(
         pipeline_name="job_ads_snapshot",
-        destination=dlt.destinations.duckdb(db_path),
+        destination=dlt.destinations.duckdb(DUCKDB_PATH),
         dataset_name="staging",
     )
         

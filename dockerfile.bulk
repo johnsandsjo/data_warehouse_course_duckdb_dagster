@@ -1,0 +1,9 @@
+FROM python:3.11
+
+WORKDIR /pipeline/data_extract_load
+
+COPY pipeline/data_extract_load/ /pipeline/data_extract_load/
+
+RUN pip install dlt duckdb 
+
+CMD ["python", "dlt_bulk_all_ads.py", "-h", "0.0.0.0", "-p", "3000"]

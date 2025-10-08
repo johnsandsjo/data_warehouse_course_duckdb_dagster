@@ -221,3 +221,5 @@ HR_agency.egg-info
 target/
 dbt_packages/
 logs/
+
+az_cli.txt
