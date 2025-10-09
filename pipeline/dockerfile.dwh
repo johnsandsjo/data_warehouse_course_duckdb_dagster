@@ -1,13 +1,13 @@
 FROM python:3.11
 
-WORKDIR /pipeline
+WORKDIR /pipeline/orchestration
 
 COPY data_extract_load/ /pipeline/data_extract_load/
 COPY data_transformation/ /pipeline/data_transformation/
 COPY orchestration/ /pipeline/orchestration/
 
-COPY data_warehouse/ pipeline/data_warehouse/
+
 
 RUN pip install dagster dagster-dbt dagster-dlt dagster-webserver dbt-core dbt-duckdb dlt duckdb 
 
-CMD ["dagster", "dev", "-f", "orchestration/definitions.py", "-h", "0.0.0.0", "-p", "3000"]
+CMD ["dagster", "dev", "-f", "definitions.py", "-h", "0.0.0.0", "-p", "3000"]

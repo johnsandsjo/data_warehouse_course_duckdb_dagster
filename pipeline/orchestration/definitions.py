@@ -26,7 +26,8 @@ def dlt_load(context: dg.AssetExecutionContext, dlt: DagsterDltResource):
     yield from dlt.run(context= context)
     
 ## create dbt asset
-dbt_project_dir = Path(__file__).parents[1] / "data_transformation"
+#dbt_project_dir = Path(__file__).parents[1] / "data_transformation"
+dbt_project_dir = Path("/pipeline/data_transformation")
 
 dbt_project = DbtProject(project_dir= dbt_project_dir, profiles_dir = Path(DBT_PROFILES_DIR))
 dbt_resource = DbtCliResource(project_dir = dbt_project)
@@ -62,4 +63,3 @@ defs = dg.Definitions(
     schedules=[schedule_dlt],
     sensors= [dlt_load_sensor]
 )
-
